@@ -107,6 +107,15 @@ public class ItemLinkedList {
         return head;
     }
 
+    // GET LAST ITEM USING TAIL POINTER
+    public item getLastItem() {
+        if (tail == null) {
+            return null;
+        }
+
+        return tail.getData();
+    }
+
     // COUNT TOTAL ITEMS
     public int getSize() {
         int count = 0;
