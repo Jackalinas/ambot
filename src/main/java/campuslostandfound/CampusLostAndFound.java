@@ -217,43 +217,32 @@ public class CampusLostAndFound extends JFrame {
                 + "\nStatus: " + found.getStatus());
     }
 
-    // DISPLAY RECORDS
-    private void displayRecords() {
+    // DISPLAY RECORDS USING POLYMORPHISM
+private void displayRecords() {
 
-        model.setRowCount(0);
+    model.setRowCount(0);
 
-        Node current = itemList.getHead();
+    Node current = itemList.getHead();
 
-        while (current != null) {
+    while (current != null) {
 
-           item item = current.getData();
+        item currentItem = current.getData();
 
-            String type;
-            String person;
+        Object[] row = {
+            currentItem.getItemName(),
+            currentItem.getDescription(),
+            currentItem.getLocation(),
+            currentItem.getDateReported(),
+            currentItem.getItemType(),
+            currentItem.getPersonName(),
+            currentItem.getStatus()
+        };
 
-            if (item instanceof LostItem) {
-                type = "Lost Item";
-                person = ((LostItem) item).getOwnerName();
-            } else {
-                type = "Found Item";
-                person = ((FoundItem) item).getFinderName();
-            }
+        model.addRow(row);
 
-            Object[] row = {
-                item.getItemName(),
-                item.getDescription(),
-                item.getLocation(),
-                item.getDateReported(),
-                type,
-                person,
-                item.getStatus()
-            };
-
-            model.addRow(row);
-
-           current = current.getNext();
-        }
+        current = current.getNext();
     }
+}
 
     // UPDATE STATUS
     private void updateRecord() {
