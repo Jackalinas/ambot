@@ -1,6 +1,7 @@
 
 
 
+
 package campuslostandfound;
 
 public class ItemLinkedList {
@@ -34,6 +35,10 @@ public class ItemLinkedList {
 
     // MANUAL LINEAR SEARCH BY ITEM NAME
     public item searchitem(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return null;
+        }
+
         Node current = head;
 
         while (current != null) {
@@ -116,5 +121,27 @@ public class ItemLinkedList {
     public boolean isEmpty() {
         return head == null;
     }
+
+    // GET ITEM BY INDEX
+    public item getItemAt(int index) {
+        if (index < 0) {
+            return null;
+        }
+
+        Node current = head;
+        int count = 0;
+
+        while (current != null) {
+            if (count == index) {
+                return current.data;
+            }
+
+            current = current.next;
+            count++;
+        }
+
+        return null;
+    }
 }
+
 
