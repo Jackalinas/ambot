@@ -1,7 +1,7 @@
-
 package campuslostandfound;
 
 public class FoundItem extends item {
+
     private String finderName;
 
     public FoundItem(String name, String description,
@@ -10,10 +10,7 @@ public class FoundItem extends item {
 
         super(name, description, location, date, status);
 
-        if (finderName == null || finderName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Finder name cannot be empty.");
-        }
-
+        validateRequiredField(finderName, "Finder name");
         this.finderName = finderName;
     }
 
@@ -32,10 +29,7 @@ public class FoundItem extends item {
     }
 
     public void setFinderName(String finderName) {
-        if (finderName == null || finderName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Finder name cannot be empty.");
-        }
-
+        validateRequiredField(finderName, "Finder name");
         this.finderName = finderName;
     }
 }

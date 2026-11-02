@@ -1,7 +1,7 @@
-
 package campuslostandfound;
 
 public class LostItem extends item {
+
     private String ownerName;
 
     public LostItem(String name, String description,
@@ -10,10 +10,7 @@ public class LostItem extends item {
 
         super(name, description, location, date, status);
 
-        if (ownerName == null || ownerName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Owner name cannot be empty.");
-        }
-
+        validateRequiredField(ownerName, "Owner name");
         this.ownerName = ownerName;
     }
 
@@ -32,10 +29,7 @@ public class LostItem extends item {
     }
 
     public void setOwnerName(String ownerName) {
-        if (ownerName == null || ownerName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Owner name cannot be empty.");
-        }
-
+        validateRequiredField(ownerName, "Owner name");
         this.ownerName = ownerName;
     }
 }
