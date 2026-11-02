@@ -60,6 +60,15 @@ public class item {
         return status;
     }
 
+    // POLYMORPHIC METHODS
+    public String getPersonName() {
+        return "N/A";
+    }
+
+    public String getItemType() {
+        return "Item";
+    }
+
     // SETTERS WITH VALIDATION
     public void setItemName(String itemName) {
         if (itemName == null || itemName.trim().isEmpty()) {
@@ -96,5 +105,3 @@ public class item {
         this.status = status;
     }
 }
-
-

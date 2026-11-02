@@ -21,7 +21,16 @@ public class LostItem extends item {
         return ownerName;
     }
 
-    // NEW SETTER METHOD
+    @Override
+    public String getPersonName() {
+        return ownerName;
+    }
+
+    @Override
+    public String getItemType() {
+        return "Lost Item";
+    }
+
     public void setOwnerName(String ownerName) {
         if (ownerName == null || ownerName.trim().isEmpty()) {
             throw new IllegalArgumentException("Owner name cannot be empty.");

@@ -368,13 +368,13 @@ private void clearFields() {
     JOptionPane.showMessageDialog(
             this, "Record added successfully!");
 }
-  private void displayRecords() {
+  
+private void displayRecords() {
 
     javax.swing.table.DefaultTableModel model =
             (javax.swing.table.DefaultTableModel) jTable3.getModel();
 
     model.setRowCount(0);
-
     displayedCount = 0;
 
     Node current = itemList.getHead();
@@ -384,24 +384,13 @@ private void clearFields() {
 
         item record = current.data;
 
-        String type;
-        String person;
-
-        if (record instanceof LostItem) {
-            type = "Lost Item";
-            person = ((LostItem) record).getOwnerName();
-        } else {
-            type = "Found Item";
-            person = ((FoundItem) record).getFinderName();
-        }
-
         model.addRow(new Object[]{
             record.getItemName(),
             record.getDescription(),
             record.getLocation(),
             record.getDateReported(),
-            type,
-            person,
+            record.getItemType(),
+            record.getPersonName(),
             record.getStatus()
         });
 
@@ -412,6 +401,7 @@ private void clearFields() {
         originalIndex++;
     }
 }
+
    private void searchRecord() {
 
     String keyword = jTextField5.getText().trim();
