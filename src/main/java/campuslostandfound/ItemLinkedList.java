@@ -145,4 +145,22 @@ public class ItemLinkedList {
 
         return null;
     }
+
+    // REVERSE THE LINKED LIST
+    public void reverseList() {
+        Node previous = null;
+        Node current = head;
+        Node nextNode;
+
+        tail = head;
+
+        while (current != null) {
+            nextNode = current.next;
+            current.next = previous;
+            previous = current;
+            current = nextNode;
+        }
+
+        head = previous;
+    }
 }
