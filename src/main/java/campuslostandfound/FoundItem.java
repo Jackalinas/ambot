@@ -1,4 +1,5 @@
 
+
 package campuslostandfound;
 
 public class FoundItem extends item {
@@ -20,4 +21,14 @@ public class FoundItem extends item {
     public String getFinderName() {
         return finderName;
     }
+
+    // SETTER WITH VALIDATION
+    public void setFinderName(String finderName) {
+        if (finderName == null || finderName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Finder name cannot be empty.");
+        }
+
+        this.finderName = finderName;
+    }
 }
+
