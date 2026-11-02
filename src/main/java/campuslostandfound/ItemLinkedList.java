@@ -27,25 +27,26 @@ public class ItemLinkedList {
     }
 
     // MANUAL LINEAR SEARCH BY ITEM NAME
-    public item searchitem(String keyword) {
-        if (keyword == null || keyword.trim().isEmpty()) {
-            return null;
-        }
-
-        Node current = head;
-
-        while (current != null) {
-            item item = current.getData();
-
-            if (item.getItemName().equalsIgnoreCase(keyword)) {
-                return item;
-            }
-
-            current = current.getNext();
-        }
-
+   public item searchitem(String keyword) {
+    if (keyword == null || keyword.trim().isEmpty()) {
         return null;
     }
+
+    Node current = head;
+
+    while (current != null) {
+        item item = current.getData();
+
+        if (item.getItemName().toLowerCase()
+                .contains(keyword.trim().toLowerCase())) {
+            return item;
+        }
+
+        current = current.getNext();
+    }
+
+    return null;
+}
 
     // DELETE ITEM USING TABLE ROW INDEX
     public boolean deleteItem(int index) {
