@@ -1,4 +1,3 @@
-
 package campuslostandfound;
 
 public class ItemLinkedList {
@@ -115,6 +114,27 @@ public class ItemLinkedList {
 
         while (current != null) {
             count++;
+            current = current.getNext();
+        }
+
+        return count;
+    }
+
+    // COUNT ITEMS BY STATUS
+    public int countItemsByStatus(String status) {
+        if (status == null || status.trim().isEmpty()) {
+            return 0;
+        }
+
+        int count = 0;
+        Node current = head;
+
+        while (current != null) {
+            if (current.getData().getStatus()
+                    .equalsIgnoreCase(status.trim())) {
+                count++;
+            }
+
             current = current.getNext();
         }
 
