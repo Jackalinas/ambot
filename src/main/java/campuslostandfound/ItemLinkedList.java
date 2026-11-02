@@ -1,5 +1,6 @@
 
 
+
 package campuslostandfound;
 
 public class ItemLinkedList {
@@ -110,4 +111,10 @@ public class ItemLinkedList {
 
         return count;
     }
+
+    // CHECK IF LINKED LIST IS EMPTY
+    public boolean isEmpty() {
+        return head == null;
+    }
 }
+
