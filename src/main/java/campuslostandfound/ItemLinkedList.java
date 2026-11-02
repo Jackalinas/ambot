@@ -10,7 +10,11 @@ public class ItemLinkedList {
 
     // ADD ITEM
     public void addItem(item item) {
-        Node newNode = new Node(item);
+    if (item == null) {
+        throw new IllegalArgumentException("Item cannot be null.");
+    }
+
+    Node newNode = new Node(item);
 
         if (head == null) {
             head = newNode;
