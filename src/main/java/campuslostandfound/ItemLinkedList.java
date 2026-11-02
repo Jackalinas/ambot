@@ -1,17 +1,16 @@
 
-
-
-
 package campuslostandfound;
 
 public class ItemLinkedList {
     private Node head;
+    private Node tail;
 
     public ItemLinkedList() {
         head = null;
+        tail = null;
     }
 
-    // ADD ITEM
+    // ADD ITEM USING TAIL POINTER
     public void addItem(item item) {
         if (item == null) {
             throw new IllegalArgumentException("Item cannot be null.");
@@ -21,16 +20,11 @@ public class ItemLinkedList {
 
         if (head == null) {
             head = newNode;
-            return;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
         }
-
-        Node current = head;
-
-        while (current.next != null) {
-            current = current.next;
-        }
-
-        current.next = newNode;
     }
 
     // MANUAL LINEAR SEARCH BY ITEM NAME
@@ -62,6 +56,11 @@ public class ItemLinkedList {
 
         if (index == 0) {
             head = head.next;
+
+            if (head == null) {
+                tail = null;
+            }
+
             return true;
         }
 
@@ -73,6 +72,10 @@ public class ItemLinkedList {
 
         if (current.next == null) {
             return false;
+        }
+
+        if (current.next == tail) {
+            tail = current;
         }
 
         current.next = current.next.next;
@@ -104,7 +107,7 @@ public class ItemLinkedList {
         return head;
     }
 
-    // COUNT TOTAL ITEMS IN THE LINKED LIST
+    // COUNT TOTAL ITEMS
     public int getSize() {
         int count = 0;
         Node current = head;
@@ -143,5 +146,3 @@ public class ItemLinkedList {
         return null;
     }
 }
-
-
