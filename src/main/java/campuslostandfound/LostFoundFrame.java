@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class LostFoundFrame extends javax.swing.JFrame {
     
-    private ItemLinkedList itemList = new ItemLinkedList();
+    private ItemLinkedList itemList;
     private int[] displayedIndexes = new int[100];
 private int displayedCount = 0;
     
@@ -19,8 +19,18 @@ private int displayedCount = 0;
      * Creates new form LostFoundFrame
      */
     public LostFoundFrame() {
-        initComponents();
+    this(new ItemLinkedList());
+}
+
+// CONSTRUCTOR WITH EXISTING LINKED LIST
+public LostFoundFrame(ItemLinkedList itemList) {
+    if (itemList == null) {
+        throw new IllegalArgumentException("Item list cannot be null.");
     }
+
+    this.itemList = itemList;
+    initComponents();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
