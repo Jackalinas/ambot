@@ -90,4 +90,12 @@ public class item {
         validateRequiredField(status, "Status");
         this.status = status;
     }
+
+    // RETURN ITEM INFORMATION USING POLYMORPHISM
+    @Override
+    public String toString() {
+        return getItemType()
+                + " | " + itemName
+                + " | " + getPersonName();
+    }
 }
