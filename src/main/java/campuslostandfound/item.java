@@ -63,7 +63,11 @@ public class item {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+    if (status == null || status.trim().isEmpty()) {
+        throw new IllegalArgumentException("Status cannot be empty.");
     }
+
+    this.status = status;
+}
 }
 
