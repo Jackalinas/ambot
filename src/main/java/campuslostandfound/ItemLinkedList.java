@@ -22,7 +22,7 @@ public class ItemLinkedList {
             head = newNode;
             tail = newNode;
         } else {
-            tail.next = newNode;
+            tail.setNext(newNode);
             tail = newNode;
         }
     }
@@ -36,13 +36,13 @@ public class ItemLinkedList {
         Node current = head;
 
         while (current != null) {
-            item item = current.data;
+            item item = current.getData();
 
             if (item.getItemName().equalsIgnoreCase(keyword)) {
                 return item;
             }
 
-            current = current.next;
+            current = current.getNext();
         }
 
         return null;
@@ -55,7 +55,7 @@ public class ItemLinkedList {
         }
 
         if (index == 0) {
-            head = head.next;
+            head = head.getNext();
 
             if (head == null) {
                 tail = null;
@@ -66,19 +66,20 @@ public class ItemLinkedList {
 
         Node current = head;
 
-        for (int i = 0; current.next != null && i < index - 1; i++) {
-            current = current.next;
+        for (int i = 0;
+                current.getNext() != null && i < index - 1; i++) {
+            current = current.getNext();
         }
 
-        if (current.next == null) {
+        if (current.getNext() == null) {
             return false;
         }
 
-        if (current.next == tail) {
+        if (current.getNext() == tail) {
             tail = current;
         }
 
-        current.next = current.next.next;
+        current.setNext(current.getNext().getNext());
         return true;
     }
 
@@ -91,14 +92,14 @@ public class ItemLinkedList {
         Node current = head;
 
         for (int i = 0; current != null && i < index; i++) {
-            current = current.next;
+            current = current.getNext();
         }
 
         if (current == null) {
             return false;
         }
 
-        current.data.setStatus(status);
+        current.getData().setStatus(status);
         return true;
     }
 
@@ -114,7 +115,7 @@ public class ItemLinkedList {
 
         while (current != null) {
             count++;
-            current = current.next;
+            current = current.getNext();
         }
 
         return count;
@@ -136,10 +137,10 @@ public class ItemLinkedList {
 
         while (current != null) {
             if (count == index) {
-                return current.data;
+                return current.getData();
             }
 
-            current = current.next;
+            current = current.getNext();
             count++;
         }
 
@@ -155,8 +156,8 @@ public class ItemLinkedList {
         tail = head;
 
         while (current != null) {
-            nextNode = current.next;
-            current.next = previous;
+            nextNode = current.getNext();
+            current.setNext(previous);
             previous = current;
             current = nextNode;
         }

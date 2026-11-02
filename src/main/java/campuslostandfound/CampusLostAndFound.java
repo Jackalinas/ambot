@@ -198,14 +198,14 @@ public class CampusLostAndFound extends JFrame {
         int row = 0;
 
         while (current != null) {
-            if (current.data == found) {
+            if (current.getData() == found) {
                 table.setRowSelectionInterval(row, row);
                 table.scrollRectToVisible(
                         table.getCellRect(row, 0, true));
                 break;
             }
 
-            current = current.next;
+            current = current.getNext();
             row++;
         }
 
@@ -226,7 +226,7 @@ public class CampusLostAndFound extends JFrame {
 
         while (current != null) {
 
-            item item = current.data;
+           item item = current.getData();
 
             String type;
             String person;
@@ -251,7 +251,7 @@ public class CampusLostAndFound extends JFrame {
 
             model.addRow(row);
 
-            current = current.next;
+           current = current.getNext();
         }
     }
 
