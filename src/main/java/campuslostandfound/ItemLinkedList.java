@@ -1,4 +1,5 @@
 
+
 package campuslostandfound;
 
 public class ItemLinkedList {
@@ -10,11 +11,11 @@ public class ItemLinkedList {
 
     // ADD ITEM
     public void addItem(item item) {
-    if (item == null) {
-        throw new IllegalArgumentException("Item cannot be null.");
-    }
+        if (item == null) {
+            throw new IllegalArgumentException("Item cannot be null.");
+        }
 
-    Node newNode = new Node(item);
+        Node newNode = new Node(item);
 
         if (head == null) {
             head = newNode;
@@ -92,7 +93,21 @@ public class ItemLinkedList {
         return true;
     }
 
+    // GET FIRST NODE
     public Node getHead() {
         return head;
+    }
+
+    // COUNT TOTAL ITEMS IN THE LINKED LIST
+    public int getSize() {
+        int count = 0;
+        Node current = head;
+
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+
+        return count;
     }
 }
