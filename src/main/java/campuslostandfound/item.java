@@ -1,31 +1,30 @@
 package campuslostandfound;
 
-public class item {
+public class Item {
 
-    private String itemName;
+    private String ItemName;
     private String description;
     private String location;
     private String dateReported;
     private String status;
+public Item(String itemName, String description,
+        String location, String dateReported,
+        String status) {
 
-    public item(String itemName, String description,
-            String location, String dateReported,
-            String status) {
+    validateRequiredField(itemName, "Item name");
+    validateRequiredField(description, "Description");
+    validateRequiredField(location, "Location");
+    validateRequiredField(dateReported, "Date");
+    validateRequiredField(status, "Status");
 
-        validateRequiredField(itemName, "Item name");
-        validateRequiredField(description, "Description");
-        validateRequiredField(location, "Location");
-        validateRequiredField(dateReported, "Date");
-        validateRequiredField(status, "Status");
+    this.ItemName = itemName;
+    this.description = description;
+    this.location = location;
+    this.dateReported = dateReported;
+    this.status = status;
+}
+    
 
-        this.itemName = itemName;
-        this.description = description;
-        this.location = location;
-        this.dateReported = dateReported;
-        this.status = status;
-    }
-
-    // SHARED VALIDATION METHOD
     protected final void validateRequiredField(
             String value, String fieldName) {
 
@@ -35,9 +34,8 @@ public class item {
         }
     }
 
-    // GETTERS
     public String getItemName() {
-        return itemName;
+        return ItemName;
     }
 
     public String getDescription() {
@@ -56,7 +54,6 @@ public class item {
         return status;
     }
 
-    // POLYMORPHIC METHODS
     public String getPersonName() {
         return "N/A";
     }
@@ -65,10 +62,9 @@ public class item {
         return "Item";
     }
 
-    // SETTERS WITH VALIDATION
-    public void setItemName(String itemName) {
-        validateRequiredField(itemName, "Item name");
-        this.itemName = itemName;
+    public void setItemName(String ItemName) {
+        validateRequiredField(ItemName, "Item name");
+        this.ItemName = ItemName;
     }
 
     public void setDescription(String description) {
@@ -88,14 +84,22 @@ public class item {
 
     public void setStatus(String status) {
         validateRequiredField(status, "Status");
+
+        if (!status.equalsIgnoreCase("Lost")
+                && !status.equalsIgnoreCase("Found")
+                && !status.equalsIgnoreCase("Claimed")) {
+
+            throw new IllegalArgumentException(
+                    "Invalid status.");
+        }
+
         this.status = status;
     }
 
-    // RETURN ITEM INFORMATION USING POLYMORPHISM
     @Override
     public String toString() {
         return getItemType()
-                + " | " + itemName
+                + " | " + ItemName
                 + " | " + getPersonName();
     }
 }

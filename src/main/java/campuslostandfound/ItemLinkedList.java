@@ -1,6 +1,7 @@
 package campuslostandfound;
 
 public class ItemLinkedList {
+  
     private Node head;
     private Node tail;
 
@@ -9,10 +10,12 @@ public class ItemLinkedList {
         tail = null;
     }
 
-    // ADD ITEM USING TAIL POINTER
-    public void addItem(item item) {
+    // ADD ITEM
+    public void addItem(Item item) {
+
         if (item == null) {
-            throw new IllegalArgumentException("Item cannot be null.");
+            throw new IllegalArgumentException(
+                    "Item cannot be null.");
         }
 
         Node newNode = new Node(item);
@@ -26,30 +29,33 @@ public class ItemLinkedList {
         }
     }
 
-    // MANUAL LINEAR SEARCH BY ITEM NAME
-   public item searchitem(String keyword) {
-    if (keyword == null || keyword.trim().isEmpty()) {
+    // LINEAR SEARCH
+    public Item searchItem(String keyword) {
+
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return null;
+        }
+
+        Node current = head;
+
+        while (current != null) {
+
+            Item item = current.getData();
+
+            if (item.getItemName().toLowerCase()
+                    .contains(keyword.trim().toLowerCase())) {
+                return item;
+            }
+
+            current = current.getNext();
+        }
+
         return null;
     }
 
-    Node current = head;
-
-    while (current != null) {
-        item item = current.getData();
-
-        if (item.getItemName().toLowerCase()
-                .contains(keyword.trim().toLowerCase())) {
-            return item;
-        }
-
-        current = current.getNext();
-    }
-
-    return null;
-}
-
-    // DELETE ITEM USING TABLE ROW INDEX
+    // DELETE ITEM
     public boolean deleteItem(int index) {
+
         if (index < 0 || head == null) {
             return false;
         }
@@ -67,7 +73,9 @@ public class ItemLinkedList {
         Node current = head;
 
         for (int i = 0;
-                current.getNext() != null && i < index - 1; i++) {
+                current.getNext() != null && i < index - 1;
+                i++) {
+
             current = current.getNext();
         }
 
@@ -80,11 +88,13 @@ public class ItemLinkedList {
         }
 
         current.setNext(current.getNext().getNext());
+
         return true;
     }
 
-    // UPDATE STATUS USING TABLE ROW INDEX
+    // UPDATE STATUS
     public boolean updateStatus(int index, String status) {
+
         if (index < 0) {
             return false;
         }
@@ -100,6 +110,7 @@ public class ItemLinkedList {
         }
 
         current.getData().setStatus(status);
+
         return true;
     }
 
@@ -108,8 +119,9 @@ public class ItemLinkedList {
         return head;
     }
 
-    // GET LAST ITEM USING TAIL POINTER
-    public item getLastItem() {
+    // GET LAST ITEM
+    public Item getLastItem() {
+
         if (tail == null) {
             return null;
         }
@@ -119,6 +131,7 @@ public class ItemLinkedList {
 
     // COUNT TOTAL ITEMS
     public int getSize() {
+
         int count = 0;
         Node current = head;
 
@@ -132,6 +145,7 @@ public class ItemLinkedList {
 
     // COUNT ITEMS BY STATUS
     public int countItemsByStatus(String status) {
+
         if (status == null || status.trim().isEmpty()) {
             return 0;
         }
@@ -140,6 +154,7 @@ public class ItemLinkedList {
         Node current = head;
 
         while (current != null) {
+
             if (current.getData().getStatus()
                     .equalsIgnoreCase(status.trim())) {
                 count++;
@@ -151,13 +166,14 @@ public class ItemLinkedList {
         return count;
     }
 
-    // CHECK IF LINKED LIST IS EMPTY
+    // CHECK IF EMPTY
     public boolean isEmpty() {
         return head == null;
     }
 
     // GET ITEM BY INDEX
-    public item getItemAt(int index) {
+    public Item getItemAt(int index) {
+
         if (index < 0) {
             return null;
         }
@@ -166,6 +182,7 @@ public class ItemLinkedList {
         int count = 0;
 
         while (current != null) {
+
             if (count == index) {
                 return current.getData();
             }
@@ -177,8 +194,9 @@ public class ItemLinkedList {
         return null;
     }
 
-    // REVERSE THE LINKED LIST
+    // REVERSE LINKED LIST
     public void reverseList() {
+
         Node previous = null;
         Node current = head;
         Node nextNode;
@@ -186,12 +204,14 @@ public class ItemLinkedList {
         tail = head;
 
         while (current != null) {
+
             nextNode = current.getNext();
             current.setNext(previous);
+
             previous = current;
             current = nextNode;
         }
 
         head = previous;
     }
-}
+}   

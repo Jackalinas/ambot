@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
  * @author carlo
  */
 public class LostFoundFrame extends javax.swing.JFrame {
-    
-    private ItemLinkedList itemList;
+    private ItemLinkedList itemList = new ItemLinkedList();
+   
     private int[] displayedIndexes = new int[100];
 private int displayedCount = 0;
     
@@ -100,7 +100,7 @@ public LostFoundFrame(ItemLinkedList itemList) {
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("CAMPUS LOST-AND-FOUND TRACKER");
+        jLabel1.setText("cAMPUS LOST-AND-FOUND TRACKER");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Item Information"));
 
@@ -269,12 +269,12 @@ public LostFoundFrame(ItemLinkedList itemList) {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(653, Short.MAX_VALUE))
+                .addGap(653, 653, 653))
         );
 
         pack();
@@ -348,7 +348,7 @@ private void clearFields() {
     String status = (String) jComboBox2.getSelectedItem();
     String date = LocalDate.now().toString();
 
-    item newitem;
+    Item newitem;
 
     if (type.equals("Lost Item")) {
         newitem = new LostItem(
@@ -382,7 +382,7 @@ private void displayRecords() {
 
     while (current != null && displayedCount < displayedIndexes.length) {
 
-        item record = current.data;
+        Item record = current.data;
 
         model.addRow(new Object[]{
             record.getItemName(),
@@ -412,7 +412,7 @@ private void displayRecords() {
         return;
     }
 
-    item found = itemList.searchitem(keyword);
+    Item found = itemList.searchItem(keyword);
 
     if (found == null) {
         JOptionPane.showMessageDialog(

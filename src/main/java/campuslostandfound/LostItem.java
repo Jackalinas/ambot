@@ -1,12 +1,12 @@
 package campuslostandfound;
 
-public class LostItem extends item {
-
+ 
+public class LostItem extends Item{
     private String ownerName;
 
     public LostItem(String name, String description,
-                    String location, String date,
-                    String status, String ownerName) {
+            String location, String date,
+            String status, String ownerName) {
 
         super(name, description, location, date, status);
 
@@ -32,4 +32,4 @@ public class LostItem extends item {
         validateRequiredField(ownerName, "Owner name");
         this.ownerName = ownerName;
     }
-}
+}      
